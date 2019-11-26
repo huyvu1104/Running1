@@ -1,7 +1,6 @@
 package com.example.running1;
 
 public class User {
-   public String userID;
    public String email;
    public int age;
    public int weight;
@@ -19,13 +18,7 @@ public class User {
         this.token = token;
     }
 
-    public String getUserID() {
-        return userID;
-    }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
 
     public String getEmail() {
         return email;

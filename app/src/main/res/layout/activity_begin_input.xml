@@ -9,7 +9,7 @@
         android:layout_height="50dp"/>
     <EditText
         android:inputType="number"
-        android:id="@+id/inputAge"
+        android:id="@+id/begin_input_age"
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
     <TextView
@@ -18,7 +18,7 @@
         android:layout_height="50dp"/>
     <EditText
         android:inputType="number"
-        android:id="@+id/inputWeight"
+        android:id="@+id/begin_input_weight"
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
     <TextView
@@ -27,12 +27,12 @@
         android:layout_height="50dp"/>
     <EditText
         android:inputType="number"
-        android:id="@+id/inputHeight"
+        android:id="@+id/begin_input_height"
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
     <Button
         android:text="Accept"
-        android:id="@+id/accept"
+        android:id="@+id/begin_accept"
         android:layout_width="wrap_content"
         android:layout_height="50dp"/>
 
