@@ -24,6 +24,8 @@ public class ShowInfoActivity extends AppCompatActivity implements View.OnClickL
     private TextView heightTV;
     private TextView weightTV;
     private TextView tokenTV;
+    private TextView stepTV;
+
     User u;
     FirebaseUser current;
     FirebaseAuth auth;
@@ -38,6 +40,8 @@ public class ShowInfoActivity extends AppCompatActivity implements View.OnClickL
         weightTV = findViewById(R.id.showWeight);
         ageTV = findViewById(R.id.showAge);
         tokenTV = findViewById(R.id.showToken);
+        stepTV = findViewById(R.id.showStep);
+
         current = FirebaseAuth.getInstance().getCurrentUser();
 
         FirebaseUser current = FirebaseAuth.getInstance().getCurrentUser();
@@ -71,6 +75,8 @@ public class ShowInfoActivity extends AppCompatActivity implements View.OnClickL
         weightTV.setText(""+u.getWeight());
         heightTV.setText(""+u.getHeight());
         tokenTV.setText(""+u.getToken());
+        stepTV.setText(""+u.getStep());
+
     }
 
     @Override

@@ -21,11 +21,8 @@ public class MainActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SharedPreferences settings = getSharedPreferences("prefs", 0);
-        boolean firstRun = settings.getBoolean("firstRun", true);
-        if (firstRun) {
-            startActivity(new Intent(getApplicationContext(), BeginInputActivity.class));
-        }
+
+
         dl = findViewById(R.id.dl);
         t = new ActionBarDrawerToggle(this, dl, R.string.app_name, R.string.app_name);
         dl.addDrawerListener(t);

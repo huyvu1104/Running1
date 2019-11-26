@@ -83,7 +83,7 @@ public class InputInfoActivity extends AppCompatActivity implements View.OnClick
                     strWeight = weight.getText().toString();
                     u.setWeight(Integer.parseInt(strWeight));
                     u.setToken(u.getToken());
-
+                    u.setStep(u.getStep());
                 DBref.child("users").child(current.getUid()).setValue(u).addOnSuccessListener(this);
 
                 break;

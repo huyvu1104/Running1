@@ -1,7 +1,7 @@
 package com.example.running1;
 
 public class User {
-   public String email;
+   public int step;
    public int age;
    public int weight;
    public int height;
@@ -10,22 +10,21 @@ public class User {
 
     }
 
-    public User(String email, int age, int weight, int height, int token) {
-        this.email = email;
+    public User( int age, int weight, int height,int step, int token) {
+
         this.age = age;
         this.weight = weight;
         this.height = height;
         this.token = token;
+        this.step=step;
     }
 
-
-
-    public String getEmail() {
-        return email;
+    public int getStep() {
+        return step;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setStep(int step) {
+        this.step = step;
     }
 
     public int getAge() {

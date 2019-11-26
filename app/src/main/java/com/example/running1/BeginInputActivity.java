@@ -48,17 +48,11 @@ public class BeginInputActivity extends AppCompatActivity implements View.OnClic
                 String strWeight = weight.getText().toString();
                 u.setWeight(Integer.parseInt(strWeight));
                 u.setToken(0);
-
+                u.setStep(0);
                 DBref = FirebaseDatabase.getInstance().getReference();
                 DBref.child("users").child(current.getUid()).setValue(u);
 
-                SharedPreferences settings = getSharedPreferences("prefs", 0);
-                SharedPreferences.Editor editor = settings.edit();
-                editor.putBoolean("firstRun", false);
-                editor.apply();
-                finish();
-
-                Intent transform = new Intent(this, MainActivity2.class);
+                Intent transform = new Intent(this, LoginActivity.class);
                 startActivity(transform);
         }
     }
