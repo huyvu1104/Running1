@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RunningActivity"></activity>
+        <activity android:name=".Ranking"></activity>
+        <activity android:name=".RunningActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +23,7 @@
         <activity android:name=".MainActivity2" />
         <activity android:name=".ShowInfoActivity" />
         <activity android:name=".InputInfoActivity" />
-        <activity android:name=".BeginInputActivity"/>
+        <activity android:name=".BeginInputActivity" />
     </application>
 
 </manifest>
