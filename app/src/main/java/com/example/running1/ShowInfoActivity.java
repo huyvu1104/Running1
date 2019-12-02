@@ -18,14 +18,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ShowInfoActivity extends AppCompatActivity implements View.OnClickListener{
+public class ShowInfoActivity extends AppCompatActivity implements View.OnClickListener, ValueEventListener{
     private DatabaseReference DBref;
     private TextView ageTV;
     private TextView heightTV;
     private TextView weightTV;
     private TextView tokenTV;
+    private TextView stepTV;
 
-
+    User u;
+    FirebaseUser current;
+    FirebaseAuth auth;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
@@ -33,6 +36,18 @@ public class ShowInfoActivity extends AppCompatActivity implements View.OnClickL
         Button inputBtn = findViewById(R.id.inputData);
         inputBtn.setOnClickListener((View.OnClickListener) this);
 
+        heightTV = findViewById(R.id.showHeight);
+        weightTV = findViewById(R.id.showWeight);
+        ageTV = findViewById(R.id.showAge);
+        tokenTV = findViewById(R.id.showToken);
+        stepTV = findViewById(R.id.showStep);
+
+        current = FirebaseAuth.getInstance().getCurrentUser();
+
+        FirebaseUser current = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference DBref = FirebaseDatabase.getInstance().getReference();
+
+        DBref.child("users").child(current.getUid()).addListenerForSingleValueEvent(this);
     }
 
     @Override
@@ -44,5 +59,28 @@ public class ShowInfoActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(transform);
                 break;
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        DBref.removeEventListener(this);
+
+    }
+
+    @Override
+    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        u = (User) dataSnapshot.getValue(User.class);
+        ageTV.setText(""+u.getAge());
+        weightTV.setText(""+u.getWeight());
+        heightTV.setText(""+u.getHeight());
+        tokenTV.setText(""+u.getToken());
+        stepTV.setText(""+u.getStep());
+
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError databaseError) {
+
     }
 }

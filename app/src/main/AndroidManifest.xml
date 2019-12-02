@@ -22,6 +22,7 @@
         <activity android:name=".MainActivity2" />
         <activity android:name=".ShowInfoActivity" />
         <activity android:name=".InputInfoActivity" />
+        <activity android:name=".BeginInputActivity"/>
     </application>
 
 </manifest>
