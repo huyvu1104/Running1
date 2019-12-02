@@ -40,9 +40,12 @@ public class MainActivity2 extends AppCompatActivity {
                         break;
                     }
                     case R.id.running: {
-                        Toast.makeText(MainActivity2.this, "OK", Toast.LENGTH_SHORT).show();
-
+                        Intent a = new Intent(MainActivity2.this, RunningActivity.class);
+                        startActivity(a);
                         break;
+//                        Intent i = new Intent(MainActivity2.this, ShowInfoActivity.class);
+//                        startActivity(i);
+//                        break;
                     }
                     case R.id.ranking: {
                         Toast.makeText(MainActivity2.this, "OK", Toast.LENGTH_SHORT).show();

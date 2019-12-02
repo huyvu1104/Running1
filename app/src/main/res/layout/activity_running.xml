@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:weightSum="2">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,6 +40,7 @@
                     android:text="Người có số bước nhiều nhất:"></TextView>
 
                 <TextView
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Bước chạy của bạn:"></TextView>
@@ -54,7 +56,25 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"></LinearLayout>
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/songuoidangchaycungban"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></TextView>
+                <TextView
+                    android:id="@+id/songuoicobuocchaynhieunhat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></TextView>
+                <TextView
+                    android:id="@+id/buocchayhientaicuaban"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></TextView>
+                <TextView
+                    android:id="@+id/sobuocconlai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></TextView>
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -75,7 +95,7 @@
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barchar"
             android:layout_width="match_parent"
-            android:layout_height="530dp"
+            android:layout_height="380dp"
 
             ></com.github.mikephil.charting.charts.BarChart>
 
