@@ -43,7 +43,7 @@ public class MainActivity2 extends AppCompatActivity {
                         break;
                     }
                     case R.id.running: {
-                        Intent a = new Intent(MainActivity2.this, RunningActivity.class);
+                        Intent a = new Intent(MainActivity2.this, RunningActivity1.class);
                         startActivity(a);
                         break;
 //                        Intent i = new Intent(MainActivity2.this, ShowInfoActivity.class);

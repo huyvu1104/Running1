@@ -11,6 +11,7 @@
 
         <TextView
             android:text="Thống kê"
+            android:textColor="#ff3f34"
             android:layout_margin="1dp"
             android:textAlignment="center"
             android:drawableLeft="@drawable/running"
@@ -90,14 +91,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="7 ngày vừa qua"
-            android:textSize="20dp"></TextView>
+            android:textColor="#ff3f34"
+            android:gravity="center"
+            android:textSize="25dp"></TextView>
 
         <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/barchar"
+            android:id="@+id/barchart"
             android:layout_width="match_parent"
-            android:layout_height="380dp"
-
-            ></com.github.mikephil.charting.charts.BarChart>
+            android:layout_height="match_parent"/>
 
 
     </LinearLayout>
