@@ -36,7 +36,7 @@ public class RunningActivity extends AppCompatActivity  {
         barEntries.add (new BarEntry (060f, 6));
         BarDataSet barDataSet = new BarDataSet (barEntries, "Dates");
 
-        ArrayList<String> theDates = new ArrayList<> ();
+        ArrayList<String> theDates = new ArrayList<String> ();
         theDates.add ("1");
         theDates.add ("2");
         theDates.add ("3");
