@@ -5,15 +5,19 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,12 +30,14 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
     TextView tv_steps;
     SensorManager sensorManager;
     boolean running=false;
+    ProgressBar progressBar;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tv_steps= findViewById(R.id.tv_steps);
+        tv_steps= findViewById(R.id.buocchay);
         sensorManager=(SensorManager)getSystemService(Context.SENSOR_SERVICE);
+        progressBar= (ProgressBar) findViewById (R.id.progressBar);
 
         dl = findViewById(R.id.dl);
         t = new ActionBarDrawerToggle(this, dl, R.string.app_name, R.string.app_name);
@@ -100,8 +106,26 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         if(running){
-            tv_steps.setText(sensorEvent.values[0]+"");
-        }
+            final int buocchay = (int) sensorEvent.values[0];
+            tv_steps.setText(buocchay +"bước");
+
+        Thread t = new Thread (){
+            @Override
+            public void run() {
+                while (progressBar.getProgress ()<100){
+                    progressBar.setProgress ((buocchay/8432)/100);
+                }
+
+                super.run ();
+            }
+        };
+//            progressBar.setMax (100);
+//            progressBar.setProgress (30);
+//            progressBar.setProgressTintList(ColorStateList.valueOf(Color.RED));
+
+
+//            progressBar.set
+    }
     }
 
     @Override
