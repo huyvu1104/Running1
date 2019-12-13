@@ -65,7 +65,7 @@
         </RelativeLayout>
 
         <ProgressBar
-
+            android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="278dp"
             android:layout_below="@id/khung1"
@@ -83,6 +83,24 @@
 
             android:progress="1"></ProgressBar>
 
+        <TextView
+            android:id="@+id/steps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progressBar"
+            android:gravity="center_vertical"
+            android:text="Steps"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/tv_steps"
+            android:layout_below="@id/steps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="0"
+            android:textSize="40dp"/>
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
