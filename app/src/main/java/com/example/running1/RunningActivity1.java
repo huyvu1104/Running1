@@ -41,7 +41,7 @@ public class RunningActivity1 extends AppCompatActivity {
         NoOfEmp.add(new BarEntry(1487f, 5));
         NoOfEmp.add(new BarEntry(1501f, 6));
         NoOfEmp.add(new BarEntry(1645f, 7));
-        BarDataSet bardataset = new BarDataSet(NoOfEmp, "No Of Employee");
+        BarDataSet bardataset = new BarDataSet(NoOfEmp, "Buoc chan");
         chart.animateY(5000);
         ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
         dataSets.add(bardataset);
