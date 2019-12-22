@@ -119,12 +119,7 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
                 super.run ();
             }
         };
-//            progressBar.setMax (100);
-//            progressBar.setProgress (30);
-//            progressBar.setProgressTintList(ColorStateList.valueOf(Color.RED));
 
-
-//            progressBar.set
     }
     }
 
