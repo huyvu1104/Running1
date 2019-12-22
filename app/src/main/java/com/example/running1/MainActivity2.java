@@ -5,9 +5,12 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -15,6 +18,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +40,8 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
     private NavigationView nv;
     TextView tv_steps;
     SensorManager sensorManager;
-    boolean running = false;
+    boolean running=false;
+    ProgressBar progressBar;
     DatabaseReference dataRef;
     Data currentData;
     String timeStamp;
@@ -44,8 +49,8 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
     int old = -1;
 
     protected void onCreate(Bundle savedInstanceState) {
-//        timeStamp = new SimpleDateFormat("yyyyMMdd").format(new Date());
-        timeStamp = "20191216";
+        timeStamp = new SimpleDateFormat("yyyyMMdd").format(new Date());
+
         currentData = new Data();
 
         currentData.createDaily();
@@ -53,6 +58,10 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
         dataRef.child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        tv_steps= findViewById(R.id.buocchay);
+        sensorManager=(SensorManager)getSystemService(Context.SENSOR_SERVICE);
+        progressBar= (ProgressBar) findViewById (R.id.progressBar);
+
         tv_steps = findViewById(R.id.tv_steps);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         dl = findViewById(R.id.dl);
@@ -121,6 +130,7 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
+
         if (currentData == null) return;
         if (running) {
             if (old == -1) {
@@ -179,3 +189,11 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
     }
 
 }
+
+/*
+    currnetData.total : tong buoc chan
+    currentData.target: muc tieu
+    currentData.daily.get("20191224") : du lieu ngay 24/12/2019
+
+
+ */
