@@ -44,7 +44,7 @@ public class ShowInfoActivity extends AppCompatActivity implements View.OnClickL
 
         current = FirebaseAuth.getInstance().getCurrentUser();
 
-        FirebaseUser current = FirebaseAuth.getInstance().getCurrentUser();
+
         DatabaseReference DBref = FirebaseDatabase.getInstance().getReference();
 
         DBref.child("users").child(current.getUid()).addListenerForSingleValueEvent(this);

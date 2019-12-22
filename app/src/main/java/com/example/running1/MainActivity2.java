@@ -42,6 +42,7 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
     SensorManager sensorManager;
     boolean running=false;
     ProgressBar progressBar;
+    TextView txtProgressBar;
     DatabaseReference dataRef;
     Data currentData;
     String timeStamp;
@@ -61,6 +62,7 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
         tv_steps= findViewById(R.id.buocchay);
         sensorManager=(SensorManager)getSystemService(Context.SENSOR_SERVICE);
         progressBar= (ProgressBar) findViewById (R.id.progressBar);
+        txtProgressBar = (TextView) findViewById (R.id.txtProgress);
 
         tv_steps = findViewById(R.id.tv_steps);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -87,9 +89,7 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
                         Intent a = new Intent(MainActivity2.this, RunningActivity1.class);
                         startActivity(a);
                         break;
-//                        Intent i = new Intent(MainActivity2.this, ShowInfoActivity.class);
-//                        startActivity(i);
-//                        break;
+
                     }
                     case R.id.ranking: {
                         Intent a = new Intent(MainActivity2.this, Ranking.class);
@@ -174,7 +174,10 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
             currentData.createDaily();
         }
         // set UI
-        tv_steps.setText((int) currentData.total + "");
+        int  step = (int ) currentData.total;
+        tv_steps.setText(step + "buoc");
+        progressBar.setProgress (step/10000*100);
+        txtProgressBar.setText (step/10000*100+"%");
 
     }
 
