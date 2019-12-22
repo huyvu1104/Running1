@@ -136,10 +136,7 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
             if (old == -1) {
                 old = (int) sensorEvent.values[0];
             }
-<<<<<<< HEAD
-        };
 
-=======
             change = (int) sensorEvent.values[0] - old;
             old = (int) sensorEvent.values[0];
 
@@ -178,7 +175,7 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
         }
         // set UI
         tv_steps.setText((int) currentData.total + "");
->>>>>>> 31d5bcd0ee57459515e04a7cade627a13e251470
+
     }
 
 

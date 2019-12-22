@@ -27,7 +27,7 @@
                 android:src="@drawable/running"></ImageView>
 
             <TextView
-                android:id="@+id/buocchay"
+                android:id="@+id/tv_steps"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -40,7 +40,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_toRightOf="@+id/buocchay"
-<<<<<<< HEAD
                 android:text=""></TextView>
             <!--            <TextView-->
             <!--                android:layout_marginTop="5dp"-->
@@ -49,12 +48,7 @@
             <!--                android:layout_width="wrap_content"-->
             <!--                android:layout_height="wrap_content"-->
             <!--                android:text=", 3km)"></TextView>-->
-            <TextView
-                android:id="@+id/muctieu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-=======
-                android:text="(130 Kcal"></TextView>
+
 
             <TextView
                 android:id="@+id/km"
@@ -62,17 +56,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@+id/kcal"
-                android:text=", 3km)"></TextView>
+                android:text=""></TextView>
 
-            <TextView
-                android:id="@+id/muctieu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
->>>>>>> 31d5bcd0ee57459515e04a7cade627a13e251470
-                android:layout_below="@id/buocchay"
-                android:layout_margin="3dp"
-                android:layout_toRightOf="@id/iconRunning"
-                android:text="Mục tiêu:"></TextView>
+
 
             <TextView
                 android:id="@+id/buocchaymuctieu"
@@ -137,24 +123,9 @@
             android:textSize="30dp"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
-        <TextView
-            android:id="@+id/steps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/progressBar"
-            android:gravity="center_vertical"
-            android:text="Steps"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="30dp" />
 
-        <TextView
-            android:id="@+id/tv_steps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/steps"
-            android:layout_marginTop="10dp"
-            android:text="0"
-            android:textSize="40dp" />
+
+
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
