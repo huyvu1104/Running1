@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,6 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class MainActivity2 extends AppCompatActivity implements SensorEventListener, ValueEventListener {
     private DrawerLayout dl;
@@ -42,27 +44,23 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
     SensorManager sensorManager;
     boolean running=false;
     ProgressBar progressBar;
-    TextView txtProgressBar;
     DatabaseReference dataRef;
-    Data currentData;
+    User u;
     String timeStamp;
     int change = 0;
     int old = -1;
+    HashMap daily;
+    FirebaseUser current;
 
     protected void onCreate(Bundle savedInstanceState) {
         timeStamp = new SimpleDateFormat("yyyyMMdd").format(new Date());
-
-        currentData = new Data();
-
-        currentData.createDaily();
-        dataRef = FirebaseDatabase.getInstance().getReference().child("data").getRef();
+        dataRef = FirebaseDatabase.getInstance().getReference().child("users").getRef();
         dataRef.child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tv_steps= findViewById(R.id.buocchay);
         sensorManager=(SensorManager)getSystemService(Context.SENSOR_SERVICE);
         progressBar= (ProgressBar) findViewById (R.id.progressBar);
-        txtProgressBar = (TextView) findViewById (R.id.txtProgress);
 
         tv_steps = findViewById(R.id.tv_steps);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -89,7 +87,9 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
                         Intent a = new Intent(MainActivity2.this, RunningActivity1.class);
                         startActivity(a);
                         break;
-
+//                        Intent i = new Intent(MainActivity2.this, ShowInfoActivity.class);
+//                        startActivity(i);
+//                        break;
                     }
                     case R.id.ranking: {
                         Intent a = new Intent(MainActivity2.this, Ranking.class);
@@ -97,8 +97,11 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
                         break;
                     }
                     case R.id.mlogout: {
+
                         Intent i = new Intent(MainActivity2.this, MainActivity.class);
+
                         startActivity(i);
+                        finish();
                         break;
                     }
 
@@ -131,29 +134,28 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
 
-        if (currentData == null) return;
-        if (running) {
+        if (u == null) return;
+        if (u!=null) {
             if (old == -1) {
                 old = (int) sensorEvent.values[0];
             }
-
             change = (int) sensorEvent.values[0] - old;
             old = (int) sensorEvent.values[0];
 
-            if (currentData.getDaily().keySet().contains(timeStamp)) {
-                Integer x = currentData.getDaily().get(timeStamp);
+            if (u.getDaily().keySet().contains(timeStamp)) {
+                Integer x = u.getDaily().get(timeStamp);
                 x += change;
-                currentData.getDaily().replace(timeStamp, x);
+                u.getDaily().replace(timeStamp, x);
             } else {
-                currentData.getDaily().put(timeStamp, 0);
+                u.getDaily().put(timeStamp, 0);
             }
-            currentData.total = 0;
-            for (Integer value:currentData.getDaily().values()) {
-                currentData.total += value;
+            u.total = 0;
+            for (Integer value:u.getDaily().values()) {
+                u.total += value;
             }
-            tv_steps.setText((int) currentData.total + "");
+            tv_steps.setText((int) u.total + "");
             Log.d("COUNT_STEP", "onSensorChanged: sensorValue " + sensorEvent.values[0] + "\n" +
-                    currentData.toString()
+                    u.toString()
             );
         }
     }
@@ -161,24 +163,25 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
     @Override
     protected void onStop() {
         super.onStop();
-        dataRef.child(FirebaseAuth.getInstance().getUid()).setValue(currentData);
+        dataRef.child(FirebaseAuth.getInstance().getUid()).setValue(u);
     }
 
     @Override
     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-        currentData = dataSnapshot.getValue(Data.class);
-        if (currentData == null) {
-            currentData = new Data();
-            currentData.setTotal(0);
-            currentData.setTarget(1000);
-            currentData.createDaily();
+        u = dataSnapshot.getValue(User.class);
+        if (u == null) {
+            u = new User();
+            u.setTotal(0);
+            daily=new HashMap<String,Integer>();
+            daily.put(timeStamp,0);
+            u.setDaily(daily);
+            u.setAge(0);
+            u.setHeight(0);
+            u.setId("");
+            u.setWeight(0);
         }
         // set UI
-        int  step = (int ) currentData.total;
-        tv_steps.setText(step + "buoc");
-        progressBar.setProgress (step/10000*100);
-        txtProgressBar.setText (step/10000*100+"%");
-
+        tv_steps.setText((int) u.daily.get(timeStamp) + "");
     }
 
 

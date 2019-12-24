@@ -34,7 +34,7 @@ public class InputInfoActivity extends AppCompatActivity implements View.OnClick
         age = findViewById(R.id.inputAge);
         height = findViewById(R.id.inputHeight);
         weight = findViewById(R.id.inputWeight);
-        current = FirebaseAuth.getInstance().getCurrentUser();
+
 
         DBref.child("users").child(current.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -82,10 +82,8 @@ public class InputInfoActivity extends AppCompatActivity implements View.OnClick
                     u.setHeight(Integer.parseInt(strHeight));
                     strWeight = weight.getText().toString();
                     u.setWeight(Integer.parseInt(strWeight));
-                    u.setToken(u.getToken());
-                    u.setStep(u.getStep());
                 DBref.child("users").child(current.getUid()).setValue(u).addOnSuccessListener(this);
-
+                finish();
                 break;
         }
     }

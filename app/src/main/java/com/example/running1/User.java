@@ -1,40 +1,59 @@
 package com.example.running1;
 
+import androidx.annotation.NonNull;
+
+import java.util.HashMap;
+
 public class User {
-    public int step;
+
     public int age;
     public int weight;
     public int height;
-    public int token;
-    public int running;
-    public String usename;
-
-
-    public User(String usename, int running) {
-        this.usename = usename;
-        this.running = running;
-    }
+    int total;
+    String Id;
+    HashMap<String,Integer> daily;
 
     public User() {
 
     }
 
-    public User(int age, int weight, int height, int step, int token) {
-
-        this.age = age;
-        this.weight = weight;
-        this.height = height;
-        this.token = token;
-        this.step = step;
+    public HashMap<String, Integer> getDaily() {
+        return daily;
     }
 
-    public int getStep() {
-        return step;
+    public void setDaily(HashMap<String, Integer> daily) {
+        this.daily = daily;
     }
 
-    public void setStep(int step) {
-        this.step = step;
+
+    public String getId() {
+        return Id;
     }
+
+    public void setId(String id) {
+        Id = id;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+
+
+    public void createDaily() {
+        daily = new HashMap<>();
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Total: " + total + "\n" + "daily: " + daily.values().toString();
+    }
+
 
     public int getAge() {
         return age;
@@ -58,30 +77,6 @@ public class User {
 
     public void setHeight(int height) {
         this.height = height;
-    }
-
-    public int getToken() {
-        return token;
-    }
-
-    public void setToken(int token) {
-        this.token = token;
-    }
-
-    public int getRunning() {
-        return running;
-    }
-
-    public void setRunning(int running) {
-        this.running = running;
-    }
-
-    public String getUsename() {
-        return usename;
-    }
-
-    public void setUsename(String usename) {
-        this.usename = usename;
     }
 
 }

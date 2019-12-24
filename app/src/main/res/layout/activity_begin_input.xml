@@ -4,6 +4,14 @@
     android:layout_height="match_parent"
     android:gravity="center">
     <TextView
+        android:text="ID"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"/>
+    <EditText
+        android:id="@+id/begin_input_id"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    <TextView
         android:text="Age"
         android:layout_width="wrap_content"
         android:layout_height="50dp"/>

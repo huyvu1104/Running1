@@ -12,12 +12,14 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        /*FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             Intent intent = new Intent(this, MainActivity2.class);
             startActivity(intent);
             finish();
         }
+        */
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beginview);
         Button loginBtn = findViewById(R.id.login_transfer);

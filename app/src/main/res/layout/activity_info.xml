@@ -39,23 +39,13 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"/>
     <TextView
-        android:text="Token"
+        android:text="ID"
         android:layout_width="wrap_content"
         android:layout_height="30dp"/>
     <TextView
         android:textAlignment="center"
         android:textColor="@color/colorPrimaryDark"
-        android:id="@+id/showToken"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"/>
-    <TextView
-        android:text="Step"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"/>
-    <TextView
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimaryDark"
-        android:id="@+id/showStep"
+        android:id="@+id/showId"
         android:layout_width="match_parent"
         android:layout_height="30dp"/>
 </LinearLayout>

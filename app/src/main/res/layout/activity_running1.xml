@@ -33,12 +33,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Số người đang đi bộ cùn bạn:"></TextView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Người có số bước nhiều nhất:"></TextView>
+                    android:text="Số bước nhiều nhất:"></TextView>
 
                 <TextView
 
@@ -60,11 +55,7 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/songuoidangchaycungban"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></TextView>
-                <TextView
-                    android:id="@+id/songuoicobuocchaynhieunhat"
+                    android:id="@+id/sobuocchaynhieunhat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"></TextView>
                 <TextView
