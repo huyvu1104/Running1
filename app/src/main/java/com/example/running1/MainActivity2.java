@@ -153,7 +153,7 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
             for (Integer value:u.getDaily().values()) {
                 u.total += value;
             }
-            tv_steps.setText((int) u.total + "");
+            tv_steps.setText((int) u.daily.get(timeStamp) + "");
             Log.d("COUNT_STEP", "onSensorChanged: sensorValue " + sensorEvent.values[0] + "\n" +
                     u.toString()
             );
@@ -163,6 +163,12 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
     @Override
     protected void onStop() {
         super.onStop();
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
         dataRef.child(FirebaseAuth.getInstance().getUid()).setValue(u);
     }
 
@@ -180,7 +186,9 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
             u.setId("");
             u.setWeight(0);
         }
-        // set UI
+        if(u.daily.get(timeStamp)==null){
+            u.daily.put(timeStamp,0);
+        }
         tv_steps.setText((int) u.daily.get(timeStamp) + "");
     }
 

@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_toRightOf="@+id/iconRunning"
-                android:text="1000 bước"></TextView>
+                android:text="0 bước"></TextView>
 
             <TextView
                 android:id="@+id/kcal"
@@ -70,7 +70,7 @@
                 android:layout_below="@id/kcal"
                 android:layout_marginTop="3dp"
                 android:layout_toRightOf="@+id/muctieu1"
-                android:text="10000 buoc"></TextView>
+                android:text="1000 buoc"></TextView>
 
 
         </RelativeLayout>
