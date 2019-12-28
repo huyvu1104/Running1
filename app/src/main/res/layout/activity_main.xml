@@ -102,7 +102,7 @@
             android:layout_alignBottom="@+id/progressBar"
             android:layout_centerInParent="true"
            android:layout_marginBottom="120dp"
-            android:text="15%"
+            android:text="0%"
             android:textSize="30dp"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 

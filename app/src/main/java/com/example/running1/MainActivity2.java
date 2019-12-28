@@ -8,7 +8,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.hardware.Sensor;
@@ -16,6 +15,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
@@ -24,7 +24,6 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,10 +49,11 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
     int change = 0;
     int old = -1;
     HashMap daily;
-    FirebaseUser current;
-
+    TextView txtProgress;
+    Handler handler= new Handler();
     protected void onCreate(Bundle savedInstanceState) {
         timeStamp = new SimpleDateFormat("yyyyMMdd").format(new Date());
+
         dataRef = FirebaseDatabase.getInstance().getReference().child("users").getRef();
         dataRef.child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(this);
         super.onCreate(savedInstanceState);
@@ -61,7 +61,7 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
         tv_steps= findViewById(R.id.buocchay);
         sensorManager=(SensorManager)getSystemService(Context.SENSOR_SERVICE);
         progressBar= (ProgressBar) findViewById (R.id.progressBar);
-
+        txtProgress=findViewById(R.id.txtProgress);
         tv_steps = findViewById(R.id.tv_steps);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         dl = findViewById(R.id.dl);
@@ -154,10 +154,30 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
                 u.total += value;
             }
             tv_steps.setText((int) u.daily.get(timeStamp) + "");
-            Log.d("COUNT_STEP", "onSensorChanged: sensorValue " + sensorEvent.values[0] + "\n" +
-                    u.toString()
-            );
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while ((u.daily.get(timeStamp)/10) <= 100) {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressBar.setProgress((u.daily.get(timeStamp)/10));
+                                txtProgress.setText((u.daily.get(timeStamp)/10) + " %");
+                            }
+                        });
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }
+            }).start();
+
         }
+
+
     }
 
     @Override
@@ -190,6 +210,7 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
             u.daily.put(timeStamp,0);
         }
         tv_steps.setText((int) u.daily.get(timeStamp) + "");
+
     }
 
 
@@ -206,10 +227,4 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
 
 }
 
-/*
-    currnetData.total : tong buoc chan
-    currentData.target: muc tieu
-    currentData.daily.get("20191224") : du lieu ngay 24/12/2019
 
-
- */
