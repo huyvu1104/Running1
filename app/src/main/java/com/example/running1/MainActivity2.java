@@ -208,6 +208,7 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
         }
         if(u.daily.get(timeStamp)==null){
             u.daily.put(timeStamp,0);
+
         }
         tv_steps.setText((int) u.daily.get(timeStamp) + "");
 
