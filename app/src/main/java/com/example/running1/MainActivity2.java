@@ -161,8 +161,8 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                progressBar.setProgress((u.daily.get(timeStamp)/10));
-                                txtProgress.setText((u.daily.get(timeStamp)/10) + " %");
+                                progressBar.setProgress((u.daily.get(timeStamp)/100));
+                                txtProgress.setText((u.daily.get(timeStamp)/100) + " %");
                             }
                         });
                         try {
