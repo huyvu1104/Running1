@@ -72,7 +72,7 @@ public class RunningActivity1 extends AppCompatActivity implements ValueEventLis
         u = dataSnapshot.getValue(User.class);
         sobuocchaynhieunhat.setText (""+u.getTotal());
         sobuochientai.setText (""+u.daily.get(timeStamp) );
-        sobuocconlai.setText (""+(1000-u.daily.get(timeStamp)));
+        sobuocconlai.setText (""+(10000-u.daily.get(timeStamp)));
     }
 
     @Override

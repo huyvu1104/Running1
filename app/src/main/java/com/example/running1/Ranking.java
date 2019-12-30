@@ -2,6 +2,7 @@ package com.example.running1;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -20,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ranking extends AppCompatActivity implements ValueEventListener {
+public class Ranking extends AppCompatActivity {
     ListView ListRanking;
     DatabaseReference dataRef;
     User u;
@@ -31,53 +32,30 @@ public class Ranking extends AppCompatActivity implements ValueEventListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
 
-        dataRef = FirebaseDatabase.getInstance().getReference().child("users").getRef();
-        dataRef.addValueEventListener(this);
-
-        ListView listviewRanking = findViewById(R.id.list_ranking);
+        ListRanking = findViewById(R.id.list_ranking);
         adapter = new RankingAdapter();
         adapter.setContext(this);
-        listviewRanking.setAdapter(adapter);
+        ListRanking.setAdapter(adapter);
 
     }
 
-    @Override
-    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-        List<User> data = new ArrayList<>();
-        for (DataSnapshot d : dataSnapshot.getChildren()) {
-            data.add(d.getValue(User.class));
-        }
-        adapter.setData(data);
-    }
 
-    @Override
-    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-    }
 }
 
-class RankingAdapter extends BaseAdapter {
+class RankingAdapter extends BaseAdapter implements ValueEventListener {
     Context context;
     List<User> data;
 
-    RankingAdapter(){
+    DatabaseReference dataRef;
+
+    RankingAdapter() {
         data = new ArrayList<>();
-    }
-    public Context getContext() {
-        return context;
+        dataRef = FirebaseDatabase.getInstance().getReference().child("users").getRef();
+        dataRef.addValueEventListener(this);
     }
 
     public void setContext(Context context) {
         this.context = context;
-    }
-
-    public List<User> getData() {
-        return data;
-    }
-
-    public void setData(List<User> data) {
-        notifyDataSetChanged();
-        this.data = data;
     }
 
     @Override
@@ -98,40 +76,46 @@ class RankingAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder = new ViewHolder();
-        if(view!=null){
+        if (view != null) {
             viewHolder = (ViewHolder) view.getTag();
         } else {
-            view = View.inflate(getContext(),R.layout.item_rank,null);
+            view = View.inflate(context, R.layout.item_rank, null);
             viewHolder.user = view.findViewById(R.id.rank_item_id);
             viewHolder.total = view.findViewById(R.id.rank_item_total);
+            viewHolder.stt = view.findViewById(R.id.rank_item_stt);
             view.setTag(viewHolder);
         }
 
         viewHolder.user.setText(data.get(i).getId());
         viewHolder.total.setText(data.get(i).getTotal() + "");
+        viewHolder.stt.setText("" + (i+1));
 
-        return null;
+        return view;
+    }
+
+    @Override
+    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        List<User> temp = new ArrayList<>();
+        for (DataSnapshot d : dataSnapshot.getChildren()) {
+            temp.add(d.getValue(User.class));
+            Log.d("data: ", "onDataChange: " + temp.toString());
+
+        }
+        data = temp;
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError databaseError) {
+
     }
 
     class ViewHolder {
+
+        TextView stt;
         TextView user;
         TextView total;
 
-        public TextView getUser() {
-            return user;
-        }
-
-        public void setUser(TextView user) {
-            this.user = user;
-        }
-
-        public TextView getTotal() {
-            return total;
-        }
-
-        public void setTotal(TextView total) {
-            this.total = total;
-        }
     }
 
 }

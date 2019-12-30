@@ -157,12 +157,12 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    while ((u.daily.get(timeStamp)/10) <= 100) {
+                    while ((u.daily.get(timeStamp)/100) <= 100) {
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                progressBar.setProgress((u.daily.get(timeStamp)/10));
-                                txtProgress.setText((u.daily.get(timeStamp)/10) + " %");
+                                progressBar.setProgress((u.daily.get(timeStamp)/100));
+                                txtProgress.setText((u.daily.get(timeStamp)/100) + " %");
                             }
                         });
                         try {
@@ -208,7 +208,6 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
         }
         if(u.daily.get(timeStamp)==null){
             u.daily.put(timeStamp,0);
-
         }
         tv_steps.setText((int) u.daily.get(timeStamp) + "");
 

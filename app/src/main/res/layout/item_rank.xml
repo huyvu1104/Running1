@@ -5,7 +5,7 @@
 
     <TextView
         android:id="@+id/rank_item_id"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="User"
@@ -13,9 +13,16 @@
 
     <TextView
         android:id="@+id/rank_item_total"
-        android:layout_width="wrap_content"
+        android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Total count"
+        android:textAlignment="center" />
+    <TextView
+        android:id="@+id/rank_item_stt"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Rank"
         android:textAlignment="center" />
 </LinearLayout>
