@@ -30,10 +30,7 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Số bước nhiều nhất:"></TextView>
+
 
                 <TextView
 
@@ -54,10 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
-                <TextView
-                    android:id="@+id/sobuocchaynhieunhat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></TextView>
+
                 <TextView
                     android:id="@+id/buocchayhientaicuaban"
                     android:layout_width="match_parent"
@@ -86,10 +80,10 @@
             android:gravity="center"
             android:textSize="25dp"></TextView>
 
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/barchart"
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
 
     </LinearLayout>
