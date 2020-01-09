@@ -153,8 +153,8 @@ public class MainActivity2 extends AppCompatActivity implements SensorEventListe
             for (Integer value:u.getDaily().values()) {
                 u.total += value;
             }
-            tv_steps.setText((int) u.daily.get(timeStamp) + "");
-            new Thread(new Runnable() {
+            tv_steps.setText((int) u.daily.get(timeStamp) + "bước");
+                       new Thread(new Runnable() {
                 @Override
                 public void run() {
                     while ((u.daily.get(timeStamp)/100) <= 100) {
