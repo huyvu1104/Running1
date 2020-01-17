@@ -62,13 +62,13 @@ public class RunningActivity1 extends AppCompatActivity implements ValueEventLis
         mChart.setTouchEnabled (true);
         mChart.setPinchZoom (true);
         values = new ArrayList<> ();
-        values.add (new Entry (1, 20));
+        values.add (new Entry (1, 0));
         values.add (new Entry (2, 50));
-        values.add (new Entry (3, 50));
-        values.add (new Entry (4, 50));
-        values.add (new Entry (5, 50));
-        values.add (new Entry (6, 50));
-        values.add (new Entry (7, 100));
+        values.add (new Entry (3, 60));
+        values.add (new Entry (4, 70));
+        values.add (new Entry (5, 90));
+        values.add (new Entry (6, 80));
+        values.add (new Entry (7, 90));
 
 
         LineDataSet set1;
@@ -115,48 +115,53 @@ public class RunningActivity1 extends AppCompatActivity implements ValueEventLis
 
         sobuochientai.setText ("" + u.daily.get (timeStamp));
         sobuocconlai.setText ("" + (10000 - u.daily.get (timeStamp)));
-        int day1, day2, day3, day4, day5, day6;
-        DateFormat dateFormat = new SimpleDateFormat ("yyyyMMdd");
-        Calendar calendar = Calendar.getInstance ();
-        calendar.add (Calendar.DATE, -6);
-        Date todate6 = calendar.getTime ();
-        calendar.add (Calendar.DATE, -5);
-        Date todate5 = calendar.getTime ();
-        calendar.add (Calendar.DATE, -4);
-        Date todate4 = calendar.getTime ();
-        calendar.add (Calendar.DATE, -3);
-        Date todate3 = calendar.getTime ();
-        calendar.add (Calendar.DATE, -2);
-        Date todate2 = calendar.getTime ();
-        calendar.add (Calendar.DATE, -1);
-        Date todate1 = calendar.getTime ();
-        if (dateFormat.format (todate1) == null || dateFormat.format (todate2) == null || dateFormat.format (todate3) == null ||
-                dateFormat.format (todate4) == null || dateFormat.format (todate5) == null || dateFormat.format (todate6) == null) {
-            day1 = day2 = day3 = day4 = day5 = day6 = 0;
-        } else {
-            day6 = Integer.parseInt (dateFormat.format (todate6))/10000*100;
-            day5 = Integer.parseInt (dateFormat.format (todate5));
-            day4 = Integer.parseInt (dateFormat.format (todate4));
-            day3 = Integer.parseInt (dateFormat.format (todate3));
-            day2 = Integer.parseInt (dateFormat.format (todate2));
-            day1 = Integer.parseInt (dateFormat.format (todate1));
-        }
-//        values.set (0, new Entry (1, day6));
-//        values.set (1, new Entry (2, day5));
-//        values.set (2, new Entry (3, day4));
-//        values.set (3, new Entry (4, day3));
-//        values.set (4, new Entry (5, day2));
-//        values.set (5, new Entry (6, day1));
+//        int day1, day2, day3, day4, day5, day6;
+//        DateFormat dateFormat = new SimpleDateFormat ("yyyyMMdd");
+//        Calendar calendar = Calendar.getInstance ();
+//        calendar.add (Calendar.DATE, -6);
+//        Date todate6 = calendar.getTime ();
+//        calendar.add (Calendar.DATE, -5);
+//        Date todate5 = calendar.getTime ();
+//        calendar.add (Calendar.DATE, -4);
+//        Date todate4 = calendar.getTime ();
+//        calendar.add (Calendar.DATE, -3);
+//        Date todate3 = calendar.getTime ();
+//        calendar.add (Calendar.DATE, -2);
+//        Date todate2 = calendar.getTime ();
+//        calendar.add (Calendar.DATE, -1);
+//        Date todate1 = calendar.getTime ();
+//        if (dateFormat.format (todate1) == null || dateFormat.format (todate2) == null || dateFormat.format (todate3) == null ||
+//                dateFormat.format (todate4) == null || dateFormat.format (todate5) == null || dateFormat.format (todate6) == null) {
+//            day1 = day2 = day3 = day4 = day5 = day6 = 0;
+//        } else {
+//            day6 = Integer.parseInt (dateFormat.format (todate6));
+//            day5 = Integer.parseInt (dateFormat.format (todate5));
+//            day4 = Integer.parseInt (dateFormat.format (todate4));
+//            day3 = Integer.parseInt (dateFormat.format (todate3));
+//            day2 = Integer.parseInt (dateFormat.format (todate2));
+//            day1 = Integer.parseInt (dateFormat.format (todate1));
+//        }
+        Date date = new Date ();
+        DateFormat dateFormat  = new SimpleDateFormat ("yyyyMMdd");
+        int date6 = Integer.parseInt (dateFormat.format (date.getTime ()-6*24*3600*1000)) ;
+        int date5 = Integer.parseInt (dateFormat.format (date.getTime ()-5*24*3600*1000)) ;
+        int date4 = Integer.parseInt (dateFormat.format (date.getTime ()-4*24*3600*1000)) ;
+        int date3 = Integer.parseInt (dateFormat.format (date.getTime ()-3*24*3600*1000)) ;
+        int date2 = Integer.parseInt (dateFormat.format (date.getTime ()-2*24*3600*1000)) ;
+        int date1 = Integer.parseInt (dateFormat.format (date.getTime ()-1*24*3600*1000)) ;
+
+
+
+        values.set (0, new Entry (1,date6 ));
+        values.set (1, new Entry (2, date5));
+        values.set (2, new Entry (3, date4));
+        values.set (3, new Entry (4, date3));
+        values.set (4, new Entry (5, date2));
+        values.set (5, new Entry (6, date1));
         values.set (6, new Entry (7,u.daily.get (timeStamp)));
 
 
-//        values.add (new Entry (1,50));
-//        values.add (new Entry (2,50));
-//        values.add (new Entry (3,50));
-//        values.add (new Entry (4,50));
-//        values.add (new Entry (5,50));
-//        values.add (new Entry (6,50));
-//        values.add (new Entry (7,100));
+
 
 
     }
